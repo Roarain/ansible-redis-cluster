@@ -1,0 +1,16 @@
+dir /etc/redis/redis_{{redis_port}}
+logfile /etc/redis/redis_{{redis_port}}/{{redis_port}}.log
+bind * -::*
+port {{redis_port}}
+pidfile /var/run/redis_{{redis_port}}.pid
+appendonly yes
+appendfilename "appendonly.aof"
+dbfilename dump.rdb
+requirepass ""
+masterauth ""
+cluster-enabled yes
+cluster-config-file nodes_{{redis_port}}.conf
+cluster-node-timeout 5000
+maxclients 100000
+maxmemory-policy volatile-lru
+loglevel notice

@@ -1,0 +1,42 @@
+---
+- name: Install Redis
+  yum:
+    name: "{{ redis_version }}"
+
+- name: disable redis
+  service:
+    name: redis
+    state: stopped
+    enabled: no
+
+- name: Delete redis service
+  ignore_errors: yes
+  file: 
+    path: "{{ item }}"
+    state: absent
+  with_items: 
+    - /usr/lib/systemd/system/redis.service
+    - /etc/systemd/system/redis.service.d
+    - /etc/systemd/system/redis-sentinel.service.d
+
+- name: prepare redis config
+  template:
+    src: config.j2
+    dest: "/etc/redis/redis_{{ redis_port }}.conf"
+    owner: redis
+
+- name: prepare redis service
+  template:
+    src: service.j2
+    dest: "/etc/systemd/system/redis_{{ redis_port }}.service"
+    owner: redis
+    group: redis
+  notify: restart-service-{{ redis_port }}
+
+- name: restart redis service
+  listen: restart-service-{{ redis_port }}
+  systemd:
+    name: "redis_{{ redis_port }}"
+    daemon_reload: yes
+    enabled: yes
+    state: restarted

@@ -1,0 +1,9 @@
+---
+- name: debug create redis cluster
+  debug:
+    msg: redis-cli --cluster-replicas 1 --cluster create {% for redis_node in groups['redis'] %} {{ hostvars[redis_node].ansible_ip }}:{{ redis_port }} {% endfor %}
+
+- name: create redis cluster
+  run_once: true
+  shell: |
+    echo "yes" | redis-cli --cluster-replicas 1 --cluster create {% for redis_node in groups['redis'] %} {{ hostvars[redis_node].ansible_ip }}:{{ redis_port }} {% endfor %}

@@ -1,0 +1,8 @@
+---
+- name: Allow Overcommit Memory
+  sysctl:
+    name: vm.overcommit_memory
+    value: "1"
+    state: present
+    reload: yes
+    ignoreerrors: yes
