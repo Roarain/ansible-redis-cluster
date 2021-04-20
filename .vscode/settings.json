@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "roles/**/*.yml": "ansible",
+        "inventory/*/*": "ansible"
+    }
+}
