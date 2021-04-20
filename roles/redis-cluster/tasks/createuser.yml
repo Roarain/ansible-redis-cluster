@@ -1,3 +1,4 @@
+---
 - name: create user group redis
   group:
     name: redis
