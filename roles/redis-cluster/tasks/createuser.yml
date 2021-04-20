@@ -1,0 +1,10 @@
+- name: create user group redis
+  group:
+    name: redis
+    state: present
+
+- name: create user redis
+  user:
+    name: redis
+    comment: redis
+    group: redis

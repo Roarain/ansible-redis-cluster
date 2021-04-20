@@ -11,17 +11,8 @@
   include_tasks: upgrade.yml
   when: purpose == 'upgrade'
 
-- name: create user group redis
-  group:
-    name: redis
-    state: present
-  when: purpose == 'install'
-
 - name: create user redis
-  user:
-    name: redis
-    comment: redis
-    group: redis
+  include_tasks: createuser.yml
   when: purpose == 'install'
 
 - name: Generate redis config file
