@@ -1,15 +1,17 @@
 ---
-# - name: Download remi-release-7.rpm
+# - name: download remi-release-7.rpm
 #   get_url:
 #     url: http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
 #     dest: /tmp/remi-release-7.rpm
-- name: Download remi-release-7.rpm
+- name: download remi-release-7.rpm
   copy:
     src: ./files/remi-release-7.rpm
     dest: /tmp/remi-release-7.rpm
 
-- name: Install rpm
-  shell: rpm -Uvh /tmp/remi-release-7.rpm
+- name: install remi-release-7.rpm
+  yum:
+     name: /tmp/remi-release-7.rpm
+     state: present
   
-- name: Enable remi repo
+- name: enable remi repo
   shell: sed -i 's/enabled=0/enabled=1/g' /etc/yum.repos.d/remi.repo
