@@ -28,7 +28,7 @@
     msg: restart service
   notify: restart-service
   changed_when: true
-  when: purpose == 'restart'
+  when: purpose == 'restart' or purpose == 'install'
 
 - meta: flush_handlers
 
