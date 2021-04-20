@@ -15,13 +15,13 @@
   group:
     name: redis
     state: present
+  when: purpose == 'install'
 
 - name: create user redis
   user:
     name: redis
     comment: redis
     group: redis
-  ignore_errors: yes
   when: purpose == 'install'
 
 - name: Generate redis config file
