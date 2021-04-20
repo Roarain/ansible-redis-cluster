@@ -31,10 +31,8 @@
     dest: "/etc/systemd/system/redis_{{ redis_port }}.service"
     owner: redis
     group: redis
-  notify: restart-service-{{ redis_port }}
 
 - name: restart redis service
-  listen: restart-service-{{ redis_port }}
   systemd:
     name: "redis_{{ redis_port }}"
     daemon_reload: yes
