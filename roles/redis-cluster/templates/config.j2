@@ -1,8 +1,8 @@
 dir /etc/redis/redis_{{redis_port}}
 logfile /etc/redis/redis_{{redis_port}}/{{redis_port}}.log
 bind {{ip}} 127.0.0.1
-requirepass {{redispass}}
-masterauth {{redispass}}
+requirepass ""
+masterauth ""
 port {{redis_port}}
 pidfile /var/run/redis_{{redis_port}}.pid
 
