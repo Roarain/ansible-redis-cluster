@@ -11,10 +11,16 @@
   include_tasks: upgrade.yml
   when: purpose == 'upgrade'
 
-- name: create linux user
-  shell: |
-    groupadd --system redis
-    useradd -s /sbin/nologin --system -g redis redis
+- name: create user group redis
+  group:
+    name: redis
+    state: present
+
+- name: create user redis
+  user:
+    name: redis
+    comment: redis
+    group: redis
   ignore_errors: yes
   when: purpose == 'install'
 
