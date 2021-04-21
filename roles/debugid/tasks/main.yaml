@@ -1,0 +1,4 @@
+---
+- name: debug my id
+  debug:
+    msg: {{ hostvars[inventory_hostname]['id'] }}
