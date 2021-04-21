@@ -8,6 +8,7 @@
     name: redis
     state: stopped
     enabled: no
+  ignore_errors: yes
 
 - name: delete redis service
   ignore_errors: yes
