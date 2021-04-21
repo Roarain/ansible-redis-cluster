@@ -3,8 +3,8 @@
   yum:
     name: "{{ redis_version }}"
 
-- name: disable redis
-  service:
+- name: stop and disable redis service
+  systemd:
     name: redis
     state: stopped
     enabled: no
