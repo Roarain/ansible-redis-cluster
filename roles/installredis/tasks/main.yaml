@@ -1,5 +1,5 @@
 ---
-- name: Install Redis
+- name: install redis
   yum:
     name: "{{ redis_version }}"
 
@@ -9,7 +9,7 @@
     state: stopped
     enabled: no
 
-- name: Delete redis service
+- name: delete redis service
   ignore_errors: yes
   file: 
     path: "{{ item }}"
