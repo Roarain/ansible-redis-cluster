@@ -1,0 +1,21 @@
+---
+- name: stop and disable redis service
+  systemd:
+    name: "redis_{{ redis_port }}"
+    state: stopped
+    enabled: no
+
+- name: delete redis config
+  file: 
+    path: "/etc/redis/redis_{{ redis_port }}.conf"
+    state: absent
+
+- name: delete redis service
+  file: 
+    path: "/etc/systemd/system/redis_{{ redis_port }}.service"
+    state: absent
+
+- name: delete redis data
+  file:
+    path: /etc/redis/redis_{{ redis_port }}
+    state: absent
